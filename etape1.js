@@ -1,22 +1,34 @@
 var express = require('express');
 var app = express();
 var fs = require("fs");
+var bodyParser = require('body-parser');
 
 app.set('view engine', 'ejs'); // générateur de template 
-//app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))  // pour utiliser le dossier public
 
-app.get('/', function (req, res) {
-       //console.log( data );
-       res.render('index.ejs');
-})
-
+//etape 01
 app.get('/fichier', function (req, res) {
    fs.readFile( __dirname + "/public/text/" + "collection_provinces.json", 'utf8', function (err, data) {
        console.log( data );
        res.send(data);
    });
 })
+
+//etape 02
+app.get('/', function (req, res) {
+   fs.readFile( __dirname + "/public/text/" + "collection_provinces.json", 'utf8', function (err, data) {
+    provinces = JSON.parse(data);
+    console.log(provinces);
+
+      /*provinces = data ;
+      var code = provinces["code" + req.body.code];
+      var nom = provinces["nom" + req.body.nom];
+      var capital = provinces["capital" + req.body.capital];*/
+
+   });
+   res.render('index.ejs');
+   });
 
 
 var server = app.listen(8081, function () {
