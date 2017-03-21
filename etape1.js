@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
       var code = provinces["code" + req.body.code];
       var nom = provinces["nom" + req.body.nom];
       var capital = provinces["capital" + req.body.capital];*/
-
+      
    });
    res.render('index.ejs');
    });
