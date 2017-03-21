@@ -21,15 +21,16 @@ MongoClient.connect('mongodb://127.0.0.1:27017/carnet_adresse', (err, database) 
 app.get('/',  (req, res) => {
    console.log('la route route get / = ' + req.url)
  
-    var cursor = db.collection('provinces').find().toArray(function(err, resultat){
+    var cursor = db.collection('province').find().toArray(function(err, resultat){
        if (err) return console.log(err)
+        console.log(cursor);
     // renders index.ejs
     // affiche le contenu de la BD
     res.render('index.ejs', {provinces: resultat})
 
     }) 
     
-    
+
 })
 
 
